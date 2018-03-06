@@ -1,0 +1,301 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="panel panel-blur with-scroll page-panel animated zoomIn">
+        <div class="panel-heading clearfix"><h3 class="panel-title">用户</h3></div>
+        <div class="panel-body" style="padding-top: 0px; padding-bottom: 0px;">
+          <div class="horizontal-scroll">
+            <div style="margin: 10px 0px">
+              <button type="button" class="btn btn-primary btn-with-icon" (click)="showModal('add',null)">
+                <i class="fa fa-plus"></i> 添加
+              </button>
+              <div class="pull-right">
+               <!-- <input class="form-control" type="text" [(ngModel)]="searchParams.user.userName" placeholder="请输入用户名或者邮箱!" (keyup.enter)="table.reload()">-->
+                <input class="form-control" type="text" [(ngModel)]="searchParams.user.username" placeholder="请输入用户名或者邮箱!" (ngModelChange)="table.reload()">
+              </div>
+            </div>
+            <datagrid [options]="options" [dataUrl]="dataUrl"  [searchParams]="searchParams" #datagrid></datagrid>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #statusTpl>
+
+    </ng-template>
+    <!-- 操作列, 代码模板 -->
+    <ng-template #optTpl let-row="row" let-col="col" let-rowIndex="rowIndex" let-colIndex="colIndex">
+      <button class="btn btn-xs btn-success" role="button" (click)="showModal('modify',row)">修改</button>
+      <button class="btn btn-xs btn-primary" role="button" (click)="showModal('order',row)">新订单</button>
+      <button class="btn btn-xs btn-info" (click)="showModal('detail',row)">详细</button>
+      <button class="btn btn-xs btn-danger" (click)="showModal('delete',row)">删除</button>
+    </ng-template>
+
+  </div>
+</div>
+
+<!-- 添加/修改 -->
+<div class="modal fade" bsModal #updateModal="bs-modal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true"
+     (onHide)="modalHandler(formInfo,'onHide', $event)">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{modaltype == 'add'? '添加':'修改'}}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="updateModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="width:750px;">
+        <form name="serverInfo" #formInfo="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">用户名</div>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="username" placeholder="请输入用户名"
+                         [(ngModel)]="item.username" #username="ngModel" required>
+                  <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                    <div *ngIf="username.errors.required" style="color:red">
+                      用户名不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div class="col-md-3 col-form-label">电话</div>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="phone" placeholder="请输入电话"
+                         [(ngModel)]="item.phone" #phone="ngModel" required>
+                  <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                    <div *ngIf="phone.errors.required" style="color:red">
+                      电话号码不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">邮箱</div>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="email" placeholder="请输入邮箱地址"
+                         [(ngModel)]="item.email" #email="ngModel" required>
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <div *ngIf="email.errors.required" style="color:red">
+                      邮箱地址不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">密码</div>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="password" placeholder="请输入密码"
+                         [(ngModel)]="item.password" #password="ngModel" required>
+                  <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <div *ngIf="password.errors.required" style="color:red">
+                      密码不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">服务器</div>
+                <div class="col-md-9">
+                  <select name="server" class="form-control"
+                          [(ngModel)]="item.server" #server="ngModel" required>
+                    <option [value]="-1">-请选择-</option>
+                    <option *ngFor="let item of serviceData"[value]="item.ip" >{{item.name}}</option>
+                  </select>
+                  <div *ngIf="server.invalid && (server.dirty || server.touched)">
+                    <div *ngIf="server.errors.required" style="color:red">
+                      服务器ip地址不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="updateModal.hide()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="saveItem(formInfo)">提交</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 删除 -->
+<div bsModal #deleteModal="bs-modal" class="modal fade" role="dialog" tabindex="-1"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true"
+     (onHide)="modalHandler(null,'onHide',$event)">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">删除</h5>
+        <button type="button" class="close" aria-label="Close" (click)="deleteModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="width:400px;">
+        <p>确定删除该用户?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="deleteModal.hide()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="sureDelete()">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 新订单 -->
+<div class="modal fade" bsModal #orderModal="bs-modal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true"
+     (onHide)="modalHandler(orderForm,'onHide', $event)">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">新订单</h5>
+        <button type="button" class="close" aria-label="Close" (click)="orderModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="width:750px;">
+        <form name="serverInfo" #orderForm="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">套餐</div>
+                <div class="col-md-9">
+                  <select name="comboId" class="form-control" (change)="searchPrice(order.comboId)"
+                          [(ngModel)]="order.comboId" #comboId="ngModel" required>
+                    <option [value]="-1">-请选择-</option>
+                    <option *ngFor="let item of comboData"[value]="item.id" >{{item.name}}</option>
+                  </select>
+                  <div *ngIf="comboId.invalid && (comboId.dirty || comboId.changed)">
+                    <div *ngIf="comboId.errors.required" style="color:red">
+                      套餐不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div class="col-md-3 col-form-label">数量</div>
+                <div class="col-md-9">
+                  <input type="number" class="form-control" name="quantity" placeholder="请输入数量" max="12" min="1"
+                         [(ngModel)]="order.quantity"  #quantity="ngModel" (keyup)="calTotalPrice(order.quantity)" required>
+                  <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)">
+                    <div *ngIf="quantity.errors.required" style="color:red">
+                      数量不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">实付价格</div>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="realPrice" placeholder="请输入价格"
+                         [(ngModel)]="order.realPrice" #realPrice="ngModel" (keyup)="realPriceChange(order.realPrice)" required>
+                  <div *ngIf="realPrice.invalid && (realPrice.dirty || realPrice.touched)">
+                    <div *ngIf="realPrice.errors.required" style="color:red">
+                      实付价格不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">服务器</div>
+                <div class="col-md-9">
+                  <select name="comboId" class="form-control"
+                          [(ngModel)]="order.serviceId" #service="ngModel" required>
+                    <option [value]="-1">-请选择-</option>
+                    <option *ngFor="let item of serviceData"[value]="item.id" >{{item.name}}</option>
+                  </select>
+                  <div *ngIf="service.invalid && (service.dirty || service.changed)">
+                    <div *ngIf="service.errors.required" style="color:red">
+                      服务器不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        <div class="form-group row">
+          <div  class="col-form-label" style="width:94px;padding-left: 15px;padding-right: 15px;">订单备注</div>
+          <div style="width: 625px;margin-left: 15px;">
+              <textarea name="description" cols="30" rows="5" class="form-control" placeholder="请输入订单备注"
+                        [(ngModel)]="order.description" #description="ngModel" required>
+              </textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)">
+              <div *ngIf="description.errors.required" style="color:red">
+                订单备注不能为空!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="orderModal.hide()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="saveOrder(orderForm)">提交</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 详细 -->
+<div class="modal fade" bsModal #detailModal="bs-modal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true" style="overflow-y: hidden;"
+     (onHide)="modalHandler(null,'onHide', $event)">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">详细</h5>
+        <button type="button" class="close" aria-label="Close" (click)="detailModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="width:750px;">
+        <datagrid [options]="detailOptions" [dataUrl]="detailSearchUrl"  [searchParams]="detailSearchParams" #tabledetail></datagrid>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+
+</div>

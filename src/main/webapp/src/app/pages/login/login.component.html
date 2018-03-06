@@ -1,0 +1,26 @@
+<div class="auth-main">
+  <div class="auth-block">
+    <h3 style="text-align: center;margin-bottom: 30px;font-size: 18px;">商户联盟管理平台</h3>
+
+    <form class="form-horizontal">
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" name="username" id="inputEmail3" [(ngModel)]="user.username" placeholder="用户名">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="password" class="form-control" id="inputPassword3" name="password" [(ngModel)]="user.password" placeholder="密码">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-9" style="line-height: 33px;">
+          <a href="" class="forgot-pass">忘记密码?</a>
+        </div>
+        <div class="col-sm-3">
+          <button type="submit" class="btn btn-default btn-auth" (click)="login()">登录</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

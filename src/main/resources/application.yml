@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+
+
+config:
+    port:
+        start: 9000
+        end: 9999

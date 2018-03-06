@@ -1,0 +1,35 @@
+<div class="al-sidebar" (monselevel)="showHoverElem = null">
+  <ul class="al-sidebar-list"  >
+    <li
+      *ngFor="let item of menuItems" class="al-sidebar-list-item"
+        [ngClass]="{'with-sub-menu': item.children && item.children.length, 'ba-sidebar-item-expanded': item.expend}">
+
+
+      <a (mouseenter)="hoverItem($event,item)" *ngIf="item.page" routerLink="{{item.page}}" class="al-sidebar-list-link "
+         (click)="item.expend = !item.expend">
+        <i class="{{item.icon }}"></i><span>{{item.name }}</span>
+        <b class="fa fa-angle-down"  [ngClass]="{'fa-angle-up': item.expend}" *ngIf="item.children && item.children.length"></b>
+      </a>
+
+      <a (mouseenter)="hoverItem($event,item)" *ngIf="!item.page" class="al-sidebar-list-link "
+         (click)="item.expend = !item.expend"
+         [ngClass]="{'ba-sidebar-item-expanded': item.expend}"
+      >
+        <i class="{{item.icon }}"></i><span>{{item.name }}</span>
+        <b class="fa fa-angle-down"  [ngClass]="{'fa-angle-up': item.expend}" *ngIf="item.children && item.children.length"></b>
+      </a>
+
+      <ul *ngIf="item.children && item.children.length" class="al-sidebar-sublist ">
+        <li *ngFor="let subitem of item.children" class="ba-sidebar-sublist-item "
+          [ngClass]="{'selected': subitem.active}"
+          (click)="activeMenu($event, subitem)">
+          <a (mouseenter)="hoverItem($event,item)"  routerLink="{{subitem.page || null}}"
+             class="al-sidebar-list-link subitem-submenu-link "><span>{{ subitem.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <div class="sidebar-hover-elem" [ngStyle]="{'top.px': showHoverElem.top, 'height.px': showHoverElem.height}"
+       [ngClass]="{'show-hover-elem': showHoverElem}"></div>
+</div>

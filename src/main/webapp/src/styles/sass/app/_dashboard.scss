@@ -1,0 +1,31 @@
+@media screen and (min-width: 1620px) {
+  .row.shift-up {
+    > div {
+      margin-top: -573px;
+    }
+  }
+}
+
+@media screen and (max-width: 1620px) {
+  .panel.feed-panel.large-panel {
+    height: 824px;
+  }
+}
+
+.user-stats-panel {
+  .panel-title {
+    padding: 0 0 15px;
+  }
+}
+
+.blurCalendar {
+  height: 475px;
+}
+
+.panel.page-panel {
+  height: 575px;
+  margin-bottom: 0px;
+  //background-size: 1273px 716px;
+  background-size: cover;
+  background-position: 0px 0px;
+}

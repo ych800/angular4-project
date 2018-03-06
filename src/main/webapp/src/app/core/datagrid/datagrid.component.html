@@ -1,0 +1,33 @@
+
+<table class="table table-bordered"  #table>
+  <thead>
+    <tr>
+      <th *ngFor="let col of options.columns"
+          class="{{col.align ? 'align-'+col.align : '' }}">
+        <div [innerHtml]="col.title | keepHtml"></div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data.list; let i=index">
+      <td *ngFor="let col of options.columns; let j=index"
+          class="{{col.align ? 'align-'+col.align : '' }}">
+
+        <ng-container *ngIf="!col.template" >
+          <ng-container [ngSwitch]="col.dataType">
+            <ng-container *ngSwitchCase="'date'">{{(row[col.field] | date: 'yyyy-MM-dd') || '-'}}</ng-container>
+            <ng-container *ngSwitchDefault>{{row[col.field] || '-'}}</ng-container>
+          </ng-container>
+
+        </ng-container>
+
+        <ng-container *ngIf="col.template">
+          <ng-container *ngTemplateOutlet="col.template;context: {'row': row, 'col': col, 'rowIndex': i, 'colIndex': j}"></ng-container>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="options.pagination" class="table-pagination">
+  <ngb-pagination [collectionSize]="data.total" [(page)]="searchParams.pager.pageNumber" [pageSize]="searchParams.pager.pageSize" [maxSize]="5"  [rotate]="true" [boundaryLinks]="true" (pageChange)="reload(searchParams.pager.pageNumber)"></ngb-pagination>
+</div>

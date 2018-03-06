@@ -1,0 +1,44 @@
+
+<div class="page-top clearfix" scroll-position="scrolled" max-height="50"  [ngClass]="{'scrolled': scrolled}">
+  <a href="#/dashboard" class="al-logo clearfix"><span>Blur</span>Admin</a>
+  <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+
+  <!--<div class="search">
+    <i class="fa fa-search" ></i>
+    <input id="searchInput" type="text" placeholder="Search for...">
+  </div>-->
+
+  <!--<div class="user-profile clearfix">
+    <div class="al-user-profile" ngbDropdown #myDrop="ngbDropdown">
+      <a ngbDropdownToggle class="profile-toggle-link">
+        <img src="assets/img/app/profile/Nasta.png">
+      </a>
+      <ul class="top-dropdown-menu profile-dropdown" ngbDropdownMenu>
+        <li><i class="dropdown-arr"></i></li>
+        <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
+        <li><a href><i class="fa fa-cog"></i>Settings</a></li>
+        <li><a href class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+      </ul>
+    </div>
+    <ul class="al-msg-center clearfix">
+      <li >
+        <a href>
+          <i class="fa fa-bell-o"></i><span>5</span>
+
+          <div class="notification-ring"></div>
+        </a>
+      </li>
+      <li >
+        <a href class="msg" >
+          <i class="fa fa-envelope-o"></i><span>5</span>
+          <div class="notification-ring"></div>
+        </a>
+      </li>
+    </ul>
+  </div>-->
+
+  <!-- 退出登录 -->
+  <div class="pull-right" style="height: 66px; line-height: 66px;font-size: 13px;">
+    <span (click)="quit()" class="signOutBtn" style="cursor: pointer;"><i class="fa fa-sign-out"></i>退出</span>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+@import "~animate.css/animate.css";
+@import "~bootstrap/scss/bootstrap.scss";
+html {
+  height:100%;
+}
+body{
+  color:#ff0000;
+  height:100%;
+  font-family:'Helvetica Neue'!important;
+  font-weight: 100!important;
+}
+input,button {
+  outline: 0;
+}
+.register {
+  background: rgba(255,255,255,0.9);
+  color: #2c3e50;
+  border-color: rgba(255,255,255,0.9);
+  border-style: solid;
+  border-width: 1px;
+  font-size: 18px;
+  width:110px;
+  display: block;
+  border-radius: 100px;
+  text-align: center;
+  text-decoration: none!important;
+  font-weight: normal;
+  -webkit-transition:background-color .1s ease-in .0s;
+}
+.register:hover {
+  background-color: rgba(0,0,0,0);
+  border-color:#ccc;
+  color: #fff;
+}
+.registerModalInput {
+  width:100%;
+  border: 0;
+  border-left:3px solid #1abc9c;
+  background: #efefef;
+  text-indent: 10px;
+}
+.registerModalInput::placeholder {
+  font-weight: 100;
+}
+.registerModalInput:hover {
+  background: #fafce0;
+}
+small {
+  color: #8b8b8b;
+  font-weight: 400;
+  font-size: 12px;
+}
+.registerBtn {
+  background-color: #5da423;
+  border:0;
+  color: #FFF;
+  cursor: pointer;
+  opacity: .7;
+  box-shadow: none;
+}
+.textCenter {
+  text-align: center;
+}
+.margin50 {
+  margin-top: 50px;
+}
+.margin20 {
+  margin-top:20px;
+}
+.indexFirst {
+  color: #ecf0f1;
+  text-align: center;
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  margin:auto;
+}
+.indexInput {
+  color: #ecf0f1;
+  background: #2c3e50;
+  box-shadow: none;
+  opacity: 0.9;
+  transition: box-shadow .2s,border-color .2s ease-in-out;
+  outline: 0;
+  border:2px solid;
+  border-color: rgba(0,0,0,0);
+}
+.indexInput::placeholder {
+  color: #ecf0f1;
+  font-size: 18px;
+  font-weight: 300;
+  font-family: "Helvetica Neue";
+}
+.indexLoad {
+  background: rgba(236,240,241,0.85);
+  color: #2c3e50;
+  border: none;
+  cursor: pointer;
+  -webkit-transition:background-color .1s ease-in .0s;
+  border:2px solid;
+  border-color: rgba(0,0,0,0);
+}
+.indexLoad:hover {
+  background-color: rgba(0,0,0,0);
+  border-color:#ccc;
+  color: #fff;
+}
+.indexLoad:focus,.registerBtn:focus {
+  outline: 0;
+}
+.indexInput:focus {
+  border: 2px solid #fff;
+}
+.indexInfoSection {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 62.5em;
+  margin-top: 8%;
+  padding-bottom: 8%;
+}
+.indexFontH4 {
+  text-align: center;
+  margin-left: 10%;
+  font-weight: 400;
+  color:#2c3e50;
+  font-size: 18px;
+  margin:8% 0;
+  line-height: 24px;
+}
+

@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+//@import "./styles/sass/main.scss";
+
+@import "../node_modules/ngx-toastr/toastr.css";
+
+.toast-top-center {
+  top: 80px;
+}
+
+
+#toast-container .toast {
+  -moz-box-shadow: 0 0 0px #fff;
+  -webkit-box-shadow: 0 0 0px #fff;
+  box-shadow: 0 0 0px #fff;
+}
+#toast-container .toast:hover {
+  -moz-box-shadow: 0 0 0px #fff;
+  -webkit-box-shadow: 0 0 0px #fff;
+  box-shadow: 0 0 0px #fff;
+}

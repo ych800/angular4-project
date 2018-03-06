@@ -1,0 +1,153 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="panel panel-blur with-scroll page-panel animated zoomIn">
+        <div class="panel-heading clearfix"><h3 class="panel-title">订单</h3></div>
+        <div class="panel-body" style="padding-top: 0px; padding-bottom: 0px;">
+          <div class="horizontal-scroll">
+            <div style="margin: 10px 0px">
+              <!--<button type="button" class="btn btn-primary btn-with-icon" (click)="showModal('add',null)">
+                <i class="fa fa-plus"></i> 新订单
+              </button>-->
+            </div>
+            <datagrid
+              [options]="options"
+              [dataUrl]="dataUrl"
+              [searchParams]="searchParams"
+              #datagrid>
+            </datagrid>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #statusTpl>
+
+    </ng-template>
+    <!-- 操作列, 代码模板 -->
+    <ng-template #optTpl let-row="row" let-col="col" let-rowIndex="rowIndex" let-colIndex="colIndex">
+      <button class="btn btn-xs btn-success" role="button" (click)="showModal('modify',row)">修改</button>
+      <button class="btn btn-xs btn-info" (click)="showModal('delete',row)">删除</button>
+    </ng-template>
+
+  </div>
+</div>
+
+<!-- 添加/修改 -->
+<!--<div class="modal fade" bsModal #updateModal="bs-modal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true"
+     (onHide)="modalHandler(formInfo,'onHide', $event)">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{modaltype == 'add'? '添加':'修改'}}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="updateModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="width:750px;">
+        <form name="serverInfo" #formInfo="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">套餐</div>
+                <div class="col-md-9">
+                  &lt;!&ndash;<input type="text" class="form-control" name="username" placeholder="请输入用户名"
+                         [(ngModel)]="item.username" #username="ngModel" required>&ndash;&gt;
+                  <select name="comboId" class="form-control"
+                          [(ngModel)]="item.comboId" #comboId="ngModel" required>
+                    <option value="1">A套餐(10元/1个月)</option>
+                    <option value="2">B套餐(20元/3个月)</option>
+                    <option value="3">C套餐(50元/6个月)</option>
+                    <option value="4">D套餐(包年)</option>
+                  </select>
+                  <div *ngIf="comboId.invalid && (comboId.dirty || comboId.changed)">
+                    <div *ngIf="comboId.errors.required" style="color:red">
+                      套餐不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div class="col-md-3 col-form-label">数量</div>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="quantity" placeholder="请输入数量"
+                         [(ngModel)]="item.quantity"  #quantity="ngModel" required>
+                  <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)">
+                    <div *ngIf="quantity.errors.required" style="color:red">
+                      数量不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div  class="col-md-3 col-form-label">购买流量</div>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="traffic" placeholder="请输入购买流量"
+                         [(ngModel)]="item.traffic" #traffic="ngModel" required>
+                  <div *ngIf="traffic.invalid && (traffic.dirty || traffic.touched)">
+                    <div *ngIf="traffic.errors.required" style="color:red">
+                      服务器ip地址不能为空!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <div  class="col-form-label" style="width:94px;padding-left: 15px;padding-right: 15px;">订单备注</div>
+            <div style="width: 625px;margin-left: 15px;">
+              <textarea name="description" cols="30" rows="5" class="form-control" placeholder="请输入订单备注"
+                        [(ngModel)]="item.description" #description="ngModel" required>
+              </textarea>
+              <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                <div *ngIf="description.errors.required" style="color:red">
+                  订单备注不能为空!
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="updateModal.hide()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="saveItem(formInfo)">提交</button>
+      </div>
+    </div>
+  </div>
+
+</div>-->
+
+<!-- 删除 -->
+<!--<div bsModal #deleteModal="bs-modal" class="modal fade" role="dialog" tabindex="-1"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true"
+     (onHide)="modalHandler(null,'onHide',$event)">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">删除</h5>
+        <button type="button" class="close" aria-label="Close" (click)="deleteModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="width:400px;">
+        <p>确定删除该用户?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="deleteModal.hide()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="sureDelete()">确定</button>
+      </div>
+    </div>
+  </div>
+</div>-->

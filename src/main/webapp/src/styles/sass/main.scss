@@ -1,0 +1,71 @@
+/**
+  webapp admin styles
+ */
+@import 'common';
+@import "theme/components/ng2-select.scss";
+@import "~animate.css/animate.css";
+@import "~bootstrap/scss/bootstrap.scss";
+
+@import "./theme/bootstrap-overrides/_panel.scss";
+
+@import "auth";
+
+@import "./theme/_blur-admin-theme.scss";
+@import "./theme/_layout.scss";
+@import "./theme/_table.scss";
+@import "./theme/_icons.scss";
+@import "./theme/_datePicker.scss";
+@import "./theme/_buttons.scss";
+
+@import "./theme/components/_pageTop.scss";
+@import "./theme/components/_msgCenter.scss";
+@import "./theme/components/_widgets.scss";
+
+@import "./theme/components/_sidebar.scss";
+
+
+
+@import "./app/_profile.scss";
+@import "./app/_iconsPage.scss";
+@import "./app/_buttonsPage.scss";
+@import "./app/_form.scss";
+@import "./app/_slider.scss";
+@import "./app/_grid.scss";
+@import "./app/_table.scss";
+@import "./app/_modals.scss";
+@import "./app/_dashboard.scss";
+/*
+@import "./app/_tabsPage.scss";
+@import "./app/_tree.scss";
+
+
+@import "./app/_alerts.scss";
+@import "./app/_notifications.scss";
+@import "./app/_modalNotifications.scss";
+*/
+// injector
+// endinjector
+
+//modified 2017-10-17 (ych)
+.modal.show .modal-dialog{
+  -webkit-transform: translate(0, -50%)!important;
+  transform: translate(0, -50%) !important;
+}
+//弹框分页条样式
+.modal{
+  .pagination > li > a,
+  .pagination > li > span{
+    background: #607d8b;
+    color:#fff;
+  }
+  .pagination > li.active > a,
+  .pagination > li.active > span{
+    background: #1f9d90 !important;
+  }
+  .pagination > li > a:hover{
+    background: #b4b8b9;
+  }
+  .modal-dialog .modal-body span{
+    color:#fff !important;
+  }
+}
